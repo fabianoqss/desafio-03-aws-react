@@ -17,7 +17,7 @@ const Login: React.FC = () =>{
       />
       <button
         type="submit"
-        className="bg-tertiary_text text-white px-6 py-2 rounded border border-primary_text rounded-2xl"
+        className="bg-tertiary_text text-white px-6 py-2  border border-primary_text rounded-2xl"
       >
         <FaArrowRight className='w-10 h-10'/>
       </button>
