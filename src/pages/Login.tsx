@@ -7,13 +7,13 @@ const Login: React.FC = () =>{
   return (
     <div>
   <div className='flex justify-center items-center min-h-screen bg-secondary_text flex-col gap-6'>
-    <h1 className='text-4xl font-bold text-center w-full max-w-3xl'>Digite o nome de usuário que deseja buscar</h1>
+    <h1 className='text-4xl font-bold'>Digite o nome de usuário que deseja buscar</h1>
 
-    <form className='flex w-full max-w-3xl gap-5'>
+    <form className='flex w-full max-w-[748px] gap-5'>
       <input
         type="text"
         placeholder="Digite o nome de usuário"
-        className="w-full h-[56px] p-2 border border-primary_text rounded-2xl placeholder:text-2xl box-border"
+        className="w-full h-[56px] p-2 border border-primary_text rounded-2xl placeholder:text-2xl box-border pl-5 pb-2"
       />
       <button
         type="submit"
@@ -23,7 +23,7 @@ const Login: React.FC = () =>{
       </button>
     </form>
 
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-3 max-w-[748px]">
       <div className="bg-secondary_color w-[350px] h-[5px]"></div> 
 
       <span className="text-2xl font-medium">ou</span> 
