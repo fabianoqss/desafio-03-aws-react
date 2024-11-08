@@ -19,6 +19,9 @@ export default {
         dark_green: '#172A3A',
         red: '#992020',
       },
+      boxShadow: {
+        'custom-offset': '8px 8px 0px #09BC8A',
+      },
     },
   },
   plugins: [],

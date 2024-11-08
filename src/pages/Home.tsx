@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import Button from '../components/Button';
 
 const Home: React.FC = () => {
 
@@ -22,8 +23,10 @@ const Home: React.FC = () => {
     <p>Olá, meu nome é Felipe Pato e sou dev<br />
       há 24 anos, sou um senior experiente e <br />
       potente, sempre disposto a evoluir!</p>
-
-
+      <div className='flex'>
+      <Button url="https://github.com/seuusername" label="GitHub" />
+      <Button url="https://github.com/seuusername" label="Linkedin" />
+      </div>
     </div>
     </section>
 
