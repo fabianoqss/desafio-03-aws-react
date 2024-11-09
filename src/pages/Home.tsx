@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Button from '../components/Button';
+import Card from '../components/Card';
 
 const Home: React.FC = () => {
 
@@ -37,9 +38,14 @@ const Home: React.FC = () => {
 
     </article>
 
+    <section className='grid justify-center bg-secondary_color mt-32 py-16'>
+      <h1 className='text-center text-7xl text-white font-bold'>Experiências</h1>
 
-
-
+      <div className='grid grid-cols-2 justify-center gap-8'>
+      <Card />  
+      <Card /> 
+      </div>
+      </section>    
 
     </div>
   );

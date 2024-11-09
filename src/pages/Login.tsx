@@ -1,7 +1,29 @@
 import React from 'react';
+import { signInWithPopup } from 'firebase/auth';
 import { FaArrowRight } from "react-icons/fa";
 import { TbBrandGithubFilled } from "react-icons/tb";
+import { auth, provider } from '../Firebase/firebaseConfig';
 
+const GitHubLoginButton = () => {
+  const loginWithGithub = () => {
+    signInWithPopup(auth, provider)
+      .then(async (result) => {
+        const user = result.user;
+        console.log("Usuário:", user);
+        const token = await user.getIdToken();
+        console.log("Token de acesso:", token);
+      })
+      .catch((error) => {
+        console.log("Erro no login com Github:", error);
+      });
+  };
+
+  return (
+    <button className='bg-dark_green text-xl text-secondary_text px-6 py-3 rounded-2xl flex items-center gap-3' onClick={loginWithGithub}>
+      <TbBrandGithubFilled className='w-6 h-6' /> Github
+    </button>
+  );
+};
 
 const Login: React.FC = () =>{
   return (
@@ -33,14 +55,7 @@ const Login: React.FC = () =>{
 
     <div className="flex items-center gap-3">
       <span className='text-2xl font-bold'> Acesse sua conta com </span>
-      <a
-        href="https://github.com/login"
-        target="_blank"  
-        rel="noopener noreferrer"  
-        className="bg-dark_green text-xl text-secondary_text px-6 py-3 rounded-2xl flex items-center gap-3"
-      >
-        <TbBrandGithubFilled className='w-6 h-6'/> Github
-      </a>
+      <GitHubLoginButton/>
     </div>
   </div>
 </div>
