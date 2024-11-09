@@ -5,7 +5,7 @@ import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
 const Footer: React.FC = () =>{
   return (
     <footer className='grid justify-center gap-12'>
-      <h1 className='text-4xl font-bold'>Assim que possível, me envie um email para que possamos trabalhar felizes juntos!</h1>
+      <h1 className='text-4xl font-bold text-center'>Assim que possível, me envie um email para que possamos <br /> trabalhar felizes juntos!</h1>
 
       <div className='flex items-center gap-5 '>
       <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
