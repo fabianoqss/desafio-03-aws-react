@@ -1,10 +1,12 @@
-import React from 'react';
 import { signInWithPopup } from 'firebase/auth';
 import { FaArrowRight } from "react-icons/fa";
 import { TbBrandGithubFilled } from "react-icons/tb";
 import { auth, provider } from '../Firebase/firebaseConfig';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const GitHubLoginButton = () => {
+  const navigate = useNavigate();
   const loginWithGithub = () => {
     signInWithPopup(auth, provider)
       .then(async (result) => {
@@ -12,6 +14,8 @@ const GitHubLoginButton = () => {
         console.log("Usuário:", user);
         const token = await user.getIdToken();
         console.log("Token de acesso:", token);
+
+        navigate('/home');
       })
       .catch((error) => {
         console.log("Erro no login com Github:", error);
@@ -26,17 +30,42 @@ const GitHubLoginButton = () => {
 };
 
 const Login: React.FC = () =>{
+  const [username, setUsername] = useState<string>('');
+  const [savedUsername, setSavedUsername] = useState<string | null>(null);
+
+  useEffect(() => {
+    const saved = sessionStorage.getItem('username');
+    if (saved) {
+      setSavedUsername(saved);
+    }
+  }, []);
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (username) {
+      sessionStorage.setItem('username', username);
+      setSavedUsername(username);
+    }
+  };
+
+
   return (
     <div>
   <div className='flex justify-center items-center min-h-screen bg-secondary_text flex-col gap-6'>
     <h1 className='text-4xl font-bold'>Digite o nome de usuário que deseja buscar</h1>
 
-    <form className='flex w-full max-w-[748px] gap-5'>
-      <input
-        type="text"
-        placeholder="Digite o nome de usuário"
-        className="w-full h-[56px] p-2 border border-primary_text rounded-2xl placeholder:text-2xl box-border pl-5 pb-2"
-      />
+    <form className='flex w-full max-w-[748px] gap-5' onSubmit={handleFormSubmit}>
+          <input
+            type="text"
+            placeholder="Digite o nome de usuário"
+            className="w-full h-[56px] p-2 border border-primary_text rounded-2xl placeholder:text-2xl box-border pl-5 pb-2"
+            list="username-suggestions"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <datalist id="username-suggestions">
+            {savedUsername && <option value={savedUsername} />}
+          </datalist>
       <button
         type="submit"
         className="bg-tertiary_text text-white px-6 py-2  border border-primary_text rounded-2xl"
