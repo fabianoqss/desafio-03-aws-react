@@ -52,7 +52,7 @@ const Login: React.FC = () => {
         localStorage.setItem('username', username);
         setSavedUsername(username);
         setError(null);
-        navigate('/home'); // Direciona para a página /home
+        navigate('/home');
       } else {
         setError('Nome de usuário não encontrado ou não cadastrado');
       }
@@ -84,13 +84,19 @@ const Login: React.FC = () => {
           {savedUsername && <option value={savedUsername} />}
         </datalist>
         <button
-          type="submit"
-          className={`${
-            username ? 'bg-secondary_color hover:bg-primary_color' : 'bg-tertiary_text'
-          } text-white px-6 py-2 border border-primary_text rounded-2xl transition-colors duration-200`}
-        >
-          <FaArrowRight className="w-10 h-10" />
-        </button>
+  type="submit"
+  onClick={(e) => {
+    if (!username && savedUsername) {
+      e.preventDefault(); 
+      handleLoginWithSavedUser(); 
+    }
+  }}
+  className={`${
+    username ? 'bg-secondary_color hover:bg-primary_color' : 'bg-tertiary_text'
+  } text-white px-6 py-2 border border-primary_text rounded-2xl transition-colors duration-200`}
+>
+  <FaArrowRight className="w-10 h-10" />
+</button>
       </form>
 
       {error && (
