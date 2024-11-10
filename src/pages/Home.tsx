@@ -24,7 +24,7 @@ const Home: React.FC = () => {
 
   return (
     <div className='bg-secondary_text'>
-      <Header />
+      <Header isLogged={isLogged} handleLogout={handleLogout} />
 
     <section className='grid grid-cols-2 items-center justify-items-center mt-28'>
       <div className='grid gap-4'>
