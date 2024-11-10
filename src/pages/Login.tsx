@@ -72,12 +72,15 @@ const Login: React.FC = () =>{
           <datalist id="username-suggestions">
             {savedUsername && <option value={savedUsername} />}
           </datalist>
-      <button
-        type="submit"
-        className="bg-tertiary_text text-white px-6 py-2  border border-primary_text rounded-2xl"
-      >
-        <FaArrowRight className='w-10 h-10'/>
-      </button>
+          <button
+            type="submit"
+            className={`${
+              username ? 'bg-secondary_color hover:bg-primary_color'  : 'bg-tertiary_text'
+           } text-white px-6 py-2 border border-primary_text rounded-2xl transition-colors duration-200`}
+          >
+           <FaArrowRight className="w-10 h-10" />
+          </button>
+
     </form>
 
     <div className="flex items-center gap-3 max-w-[748px]">
