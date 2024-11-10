@@ -1,7 +1,6 @@
 import React from 'react';
 import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
 
-
 const Footer: React.FC = () =>{
   return (
     <footer className='grid justify-center gap-12'>
