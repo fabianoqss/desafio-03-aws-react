@@ -4,6 +4,7 @@ import { TbBrandGithubFilled } from "react-icons/tb";
 import { auth, provider } from '../Firebase/firebaseConfig';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { RiAlertFill } from "react-icons/ri";
 
 const GitHubLoginButton = () => {
   const navigate = useNavigate();
@@ -82,6 +83,13 @@ const Login: React.FC = () =>{
           </button>
 
     </form>
+
+    {error && (
+        <p className="text-red font-semibold text-base flex items-center gap-2 text-left w-[744px]">
+          <RiAlertFill className="w-5 h-5" /> {error}
+        </p>
+      )}
+
 
     <div className="flex items-center gap-3 max-w-[748px]">
       <div className="bg-secondary_color w-[350px] h-[5px]"></div> 
