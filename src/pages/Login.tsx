@@ -32,6 +32,7 @@ const GitHubLoginButton = () => {
 const Login: React.FC = () =>{
   const [username, setUsername] = useState<string>('');
   const [savedUsername, setSavedUsername] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const saved = localStorage.getItem('username');
@@ -43,8 +44,13 @@ const Login: React.FC = () =>{
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (username) {
-      localStorage.setItem('username', username);
-      setSavedUsername(username);
+      if(username === savedUsername){
+        localStorage.setItem('username', username);
+        setSavedUsername(username);
+        setError(null);
+      }else{
+        setError('Nome de usuário não encontrado ou não cadastrado');
+      }
     }
   };
 
