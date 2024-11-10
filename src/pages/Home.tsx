@@ -1,11 +1,26 @@
-import React from 'react';
+import React, {useState, useEffect } from 'react';
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Button from '../components/Button';
 import Card from '../components/Card';
 
 const Home: React.FC = () => {
+  const [isLogged, setIsLogged] = useState<boolean>(false);
 
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    if (user) {
+      setIsLogged(true); 
+    } else {
+      setIsLogged(false); 
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    setIsLogged(false); 
+  };
 
   return (
     <div className='bg-secondary_text'>
