@@ -34,7 +34,7 @@ const Login: React.FC = () =>{
   const [savedUsername, setSavedUsername] = useState<string | null>(null);
 
   useEffect(() => {
-    const saved = sessionStorage.getItem('username');
+    const saved = localStorage.getItem('username');
     if (saved) {
       setSavedUsername(saved);
     }
@@ -43,7 +43,7 @@ const Login: React.FC = () =>{
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (username) {
-      sessionStorage.setItem('username', username);
+      localStorage.setItem('username', username);
       setSavedUsername(username);
     }
   };
