@@ -23,7 +23,7 @@ const GitHubLoginButton = () => {
   };
 
   return (
-    <button className='bg-dark_green text-xl text-secondary_text px-6 py-3 rounded-2xl flex items-center gap-3' onClick={loginWithGithub}>
+    <button className='bg-dark_green text-xl text-secondary_text px-6 py-3 rounded-2xl flex items-center gap-3 hover:bg-primary_color transition-colors duration-200' onClick={loginWithGithub}>
       <TbBrandGithubFilled className='w-6 h-6' /> Github
     </button>
   );
