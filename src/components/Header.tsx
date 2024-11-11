@@ -1,5 +1,6 @@
 import React from 'react';
 import { IoEnterOutline } from "react-icons/io5";
+import { Link } from 'react-router-dom';
 
 interface HeaderProps {
   isLogged: boolean;
@@ -32,13 +33,13 @@ const Header: React.FC<HeaderProps> = ({isLogged, handleLogout}) =>{
             Sair
           </button>
         ) : (
-          <a
-            href="#entrar"
+          <Link
+            to="/login"
             className="flex items-center gap-3 text-2xl font-semibold hover:text-primary_color mr-2"
           >
             <IoEnterOutline className="h-8 w-8 mt-0.5" />
             Entrar
-          </a>
+          </Link>
         )}
       </nav>
     </header>
