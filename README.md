@@ -27,6 +27,7 @@ npm run dev
 - React Icons (Ícones Componentizados)
 - Local Storage (Armazenamento de dados de Sessão)
 - Firebase
+- React Modal
 
 ### API Consumida:
 
