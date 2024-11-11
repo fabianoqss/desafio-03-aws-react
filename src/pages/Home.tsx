@@ -56,8 +56,8 @@ const Home: React.FC = () => {
     <div className='bg-secondary_text'>
       <Header isLogged={isLogged} handleLogout={handleLogout} />
 
-      <section className='grid grid-cols-2 items-center justify-items-center mt-28 max-w-[1240px]'>
-        <div className='grid gap-4'>
+      <section className='grid grid-cols-2 justify-center items-center  mt-28'>
+        <div className='grid gap-4 justify-items-center'>
           <img
             src={userData.avatarUrl || ''}
             alt={userData.name}
@@ -68,7 +68,7 @@ const Home: React.FC = () => {
           <h1 className='text-2xl'>{userData.email || ''}</h1>
         </div>
 
-        <div className='grid gap-8 justify-end'>
+        <div className='grid gap-8 max-w-xl'>
           <h1 className='text-7xl'>Hello,<br /> I'm <span className='text-primary_color'>{userData.name || 'Fulano'}</span></h1>
           <p>Olá, meu nome é {userData.name || 'Usuário'} e sou dev há 24 anos, sou um senior experiente e potente, sempre disposto a evoluir!</p>
           <div className='flex'>

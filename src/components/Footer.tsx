@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import { FaInstagram, FaFacebook, FaTwitter, FaYoutube } from 'react-icons/fa';
 
 Modal.setAppElement('#root');
 
@@ -29,7 +28,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className='grid justify-center gap-12 pt-32 gap-16 pb-16'>
+    <footer className='grid justify-center  pt-32 gap-16 pb-16'>
       <h1 className='text-4xl font-bold text-center text-dark_green'>Assim que possível, me envie um email para que possamos <br /> trabalhar felizes juntos!</h1>
 
       <div className='flex items-center gap-5 justify-center'>
