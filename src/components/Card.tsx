@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import { GrAddCircle } from "react-icons/gr";
 
 Modal.setAppElement('#root'); // Necessário para acessibilidade ao usar react-modal
 
@@ -15,14 +16,12 @@ const Card: React.FC = () => {
   const closeModal = () => setModalIsOpen(false);
 
   const handleSaveCard = () => {
-    // A lógica de salvamento pode ser implementada aqui
     console.log({ title, period, skills, description, repositoryLink });
     closeModal();
   };
 
   return (
     <div>
-      {/* Card existente */}
       <div className='bg-card_color mt-6 grid max-w-sm p-8 gap-4 rounded-[20px] shadow-custom-offset pb-48'>
         <h1 className='text-3xl text-white'>Título</h1>
         <p className='text-xl text-tertiary_text'>Junho - 2002 - 2020</p>
@@ -39,6 +38,14 @@ const Card: React.FC = () => {
         <button onClick={openModal} className='mt-4 bg-dark_green text-white py-2 px-4 rounded'>
           Criar Novo Card
         </button>
+      </div>
+
+      <div className='bg-card_color mt-6  max-w-sm p-8 rounded-[20px] shadow-custom-offset pb-96 '>
+        <div className='flex flex-col justify-items-center items-center gap-4 '>
+        <GrAddCircle className='w-24 h-24 text-white hover:text-primary_color'/>
+      <h2 className='text-3xl text-white hover:text-primary_color font-extrabold'>Adicionar Card</h2>
+      </div>
+
       </div>
 
       <Modal
@@ -90,10 +97,10 @@ const Card: React.FC = () => {
         />
 
         <div className="flex gap-4">
-          <button onClick={closeModal} className="bg-red-500 text-white py-2 px-4 rounded w-full">
+          <button onClick={closeModal} className="bg-white text-dark_green border-[1px] border-dark_green py-3 px-8 rounded-lg w-full hover:bg-red">
             Cancelar
           </button>
-          <button onClick={handleSaveCard} className="bg-dark_green text-white py-2 px-4 rounded w-full">
+          <button onClick={handleSaveCard} className="bg-dark_green text-white py-3 px-8 rounded-lg w-full hover:bg-primary_color">
             Salvar
           </button>
         </div>
