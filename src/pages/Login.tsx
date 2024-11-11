@@ -15,9 +15,14 @@ const GitHubLoginButton = () => {
         const user = result.user;
         const token = await user.getIdToken();
 
-        const username = user.displayName || user.email;
+        const githubUsername = user.providerData.find(
+          (provider) => provider.providerId === 'github.com'
+        )?.uid;
+        
+        if (githubUsername) {
+          localStorage.setItem('username', githubUsername);
+        }
   
-        localStorage.setItem('user', JSON.stringify({ username }));
         localStorage.setItem('token', token);
   
         navigate('/home');

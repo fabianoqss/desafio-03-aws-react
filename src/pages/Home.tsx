@@ -15,8 +15,9 @@ const Home: React.FC = () => {
     username: ''
   });
 
-  // Função para buscar dados do usuário na API do GitHub
-  const fetchGitHubData = async (username: string) => {
+  const username = localStorage.getItem('username')
+
+  const fetchGitHubData = async () => {
     try {
       const response = await axios.get(`https://api.github.com/users/${username}`);
       setUserData({
@@ -32,12 +33,11 @@ const Home: React.FC = () => {
   };
 
   useEffect(() => {
-    // Recupera o usuário do localStorage
     const user = localStorage.getItem('user');
     if (user) {
       const { username } = JSON.parse(user);
       setIsLogged(true);
-      fetchGitHubData(username); // Chama a função para buscar os dados do GitHub
+      fetchGitHubData(); 
     }
   }, []);
 
