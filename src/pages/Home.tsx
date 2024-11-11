@@ -15,11 +15,10 @@ const Home: React.FC = () => {
     username: ''
   });
 
-  const username = localStorage.getItem('username')
-
-  const fetchGitHubData = async () => {
+  const fetchGitHubData = async (username: string) => {
     try {
       const response = await axios.get(`https://api.github.com/users/${username}`);
+      console.log("Reposta da API DO GIT: ", response)
       setUserData({
         name: response.data.name,
         email: response.data.email || 'Não disponível',
@@ -33,11 +32,10 @@ const Home: React.FC = () => {
   };
 
   useEffect(() => {
-    const user = localStorage.getItem('user');
+    const user = localStorage.getItem('username');
     if (user) {
-      const { username } = JSON.parse(user);
       setIsLogged(true);
-      fetchGitHubData(); 
+      fetchGitHubData(user); 
     }
   }, []);
 
@@ -58,20 +56,20 @@ const Home: React.FC = () => {
     <div className='bg-secondary_text'>
       <Header isLogged={isLogged} handleLogout={handleLogout} />
 
-      <section className='grid grid-cols-2 items-center justify-items-center mt-28'>
+      <section className='grid grid-cols-2 items-center justify-items-center mt-28 max-w-[1240px]'>
         <div className='grid gap-4'>
           <img
             src={userData.avatarUrl || ''}
             alt={userData.name}
             className='w-[260px] h-[260px] bg-black rounded-full'
           />
-          <h1 className='text-7xl'>{userData.name || 'Nome não disponível'}</h1>
-          <p className='text-3xl'>{userData.location || 'Localização não disponível'}</p>
-          <h1 className='text-3xl'>{userData.email || 'Email não disponível'}</h1>
+          <h1 className='text-6xl'>{userData.name || 'Patoxx'}</h1>
+          <p className='text-2xl'>{userData.location || ''}</p>
+          <h1 className='text-2xl'>{userData.email || ''}</h1>
         </div>
 
-        <div className='grid gap-8'>
-          <h1 className='text-7xl'>Hello,<br /> I'm {userData.name || 'Usuário'}</h1>
+        <div className='grid gap-8 justify-end'>
+          <h1 className='text-7xl'>Hello,<br /> I'm <span className='text-primary_color'>{userData.name || 'Fulano'}</span></h1>
           <p>Olá, meu nome é {userData.name || 'Usuário'} e sou dev há 24 anos, sou um senior experiente e potente, sempre disposto a evoluir!</p>
           <div className='flex'>
             <Button url={`https://github.com/${userData.username}`} label="GitHub" />

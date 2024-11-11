@@ -33,10 +33,30 @@ const Footer: React.FC = () => {
       <h1 className='text-4xl font-bold text-center text-dark_green'>Assim que possível, me envie um email para que possamos <br /> trabalhar felizes juntos!</h1>
 
       <div className='flex items-center gap-5 justify-center'>
-        <FaInstagram onClick={() => openModal('Instagram')} className="w-6 h-6 text-pink-500 hover:text-pink-700 cursor-pointer" />
-        <FaFacebook onClick={() => openModal('Facebook')} className="w-6 h-6 text-blue-600 hover:text-blue-800 cursor-pointer" />
-        <FaTwitter onClick={() => openModal('Twitter')} className="w-6 h-6 text-blue-400 hover:text-blue-600 cursor-pointer" />
-        <FaYoutube onClick={() => openModal('YouTube')} className="w-6 h-6 text-red-600 hover:text-red-800 cursor-pointer" />
+        <img
+          src="./assets/insta-black.svg"
+          alt="Instagram"
+          onClick={() => openModal('Instagram')}
+          className="w-6 h-6 cursor-pointer hover:opacity-80"
+        />
+        <img
+          src="/assets/facebook-icon.svg"
+          alt="Facebook"
+          onClick={() => openModal('Facebook')}
+          className="w-6 h-6 cursor-pointer hover:opacity-80"
+        />
+        <img
+          src="/assets/twitter-icon.svg"
+          alt="Twitter"
+          onClick={() => openModal('Twitter')}
+          className="w-6 h-6 cursor-pointer hover:opacity-80"
+        />
+        <img
+          src="/assets/youtube-icon.svg"
+          alt="YouTube"
+          onClick={() => openModal('YouTube')}
+          className="w-6 h-6 cursor-pointer hover:opacity-80"
+        />
       </div>
 
       <div className='flex items-center gap-20 justify-center'>
