@@ -8,14 +8,16 @@ import { RiAlertFill } from "react-icons/ri";
 
 const GitHubLoginButton = () => {
   const navigate = useNavigate();
-  
+
   const loginWithGithub = () => {
     signInWithPopup(auth, provider)
       .then(async (result) => {
         const user = result.user;
         const token = await user.getIdToken();
 
-        localStorage.setItem('user', JSON.stringify(user));
+        const username = user.displayName || user.email;
+  
+        localStorage.setItem('user', JSON.stringify({ username }));
         localStorage.setItem('token', token);
   
         navigate('/home');
@@ -39,23 +41,22 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const saved = localStorage.getItem('username');
+    const saved = localStorage.getItem('user');
     if (saved) {
-      setSavedUsername(saved);
+      const user = JSON.parse(saved);
+      setSavedUsername(user.username);
     }
   }, []);
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (username) {
-      if (username === savedUsername) {
-        localStorage.setItem('username', username);
-        setSavedUsername(username);
-        setError(null);
-        navigate('/home');
-      } else {
-        setError('Nome de usuário não encontrado ou não cadastrado');
-      }
+
+    if (username === savedUsername) {
+      localStorage.setItem('username', username);
+      setError(null);
+      navigate('/home');
+    } else {
+      setError('Nome de usuário não encontrado ou não cadastrado');
     }
   };
 
