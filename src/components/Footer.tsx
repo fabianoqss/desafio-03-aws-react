@@ -21,7 +21,10 @@ const Footer: React.FC = () => {
   };
 
   const handleSaveUrl = () => {
-    console.log(`URL for ${selectedPlatform}: ${url}`);
+    if (selectedPlatform) {
+      localStorage.setItem(`url_${selectedPlatform}`, url);
+      console.log(`URL para ${selectedPlatform}: ${url} foi salva`);
+    }
     closeModal();
   };
 
@@ -41,23 +44,32 @@ const Footer: React.FC = () => {
         <p className='text-xl'>© 2024, All Rights By Compass UOL</p>
       </div>
 
-      <Modal 
-        isOpen={modalIsOpen} 
-        onRequestClose={closeModal} 
-        contentLabel="Adicionar URL"
-        className="modal-content"
-        overlayClassName="modal-overlay"
-      >
-        <h2>Adicionar URL para {selectedPlatform}</h2>
-        <input 
-          type="text" 
-          value={url} 
-          onChange={(e) => setUrl(e.target.value)} 
-          placeholder={`Digite a URL do ${selectedPlatform}`}
-        />
-        <button onClick={handleSaveUrl}>Salvar</button>
-        <button onClick={closeModal}>Fechar</button>
-      </Modal>
+      <Modal
+  isOpen={modalIsOpen}
+  onRequestClose={closeModal}
+  contentLabel="Adicionar URL"
+  className="flex flex-col justify-center bg-white rounded-lg shadow-lg p-16 max-w-3xl w-full mt-16 gap-8"
+  overlayClassName="fixed inset-0 bg-tertiary_text bg-opacity-75 flex items-center justify-center"
+>
+  <h2 className="text-5xl font-semibold mb-4 text-left">Adicionar link</h2>
+  
+  <input
+    type="text"
+    placeholder="Digite a URL"
+    value={url}
+    onChange={(e) => setUrl(e.target.value)}
+    className="border border-gray-300 p-3 w-full rounded-md mb-4"
+  />
+  
+  <div className="flex gap-4 w-full">
+    <button onClick={closeModal} className="bg-white text-dark_green border-[1px] border-dark_green py-3 px-8 rounded-lg w-full hover:bg-red">
+      Cancelar
+    </button>
+    <button onClick={handleSaveUrl} className="bg-dark_green text-white py-3 px-8 rounded-lg w-full hover:bg-primary_color">
+      Salvar
+    </button>
+  </div>
+</Modal>
     </footer>
   );
 };
