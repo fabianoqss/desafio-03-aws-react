@@ -80,7 +80,7 @@ const Home: React.FC = () => {
     <div className='bg-secondary_text'>
       <Header isLogged={isLogged} handleLogout={handleLogout} />
 
-      <section className='grid grid-cols-2 justify-center items-center  mt-28'>
+      <section id='inicio' className='grid grid-cols-2 justify-center items-center  mt-28'>
         <div className='grid gap-4 justify-items-center'>
           <img
             src={userData.avatarUrl || ''}
@@ -89,12 +89,12 @@ const Home: React.FC = () => {
           />
           <h1 className='text-[64px] font-extrabold'>{userData.username || ''}</h1>
           <p className='text-[25px] font-semibold'>{userData.location || ''}</p>
-          <h1 className='text-[25px] font-semibold'>{userData.email || ''}</h1>
+          <h1 className='text-[25px] font-semibold'>{localStorage.getItem('email') || ''}</h1>
         </div>
 
         <div className='grid gap-8 max-w-xl relative'>
           <h1 className='text-7xl'>Hello,<br /> I'm <span className='text-primary_color'>{userData.name || 'Fulano'}</span></h1>
-          <p className='text-[#18191F] font-semibold'>Olá, meu nome é {userData.name || 'Usuário'} e sou dev há 24 anos, sou um senior experiente e potente, sempre disposto a evoluir!</p>
+          <p className='text-[#18191F] font-semibold'>Olá, meu nome é {userData.name || 'Usuário'} </p>
           <div className='flex'>
             <Button url={`https://github.com/${userData.username}`} label="GitHub" />
             <Button url="https://www.linkedin.com" label="Linkedin" />
@@ -114,7 +114,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <article className='bg-card_color max-w-[1240px] mx-auto rounded-3xl mt-36 p-16 relative'>
+      <article id='historia' className='bg-card_color max-w-[1240px] mx-auto rounded-3xl mt-36 p-16 relative'>
   <h1 className='text-7xl text-white'>Minha História</h1>
   {isEditing ? (
     <textarea
@@ -133,14 +133,12 @@ const Home: React.FC = () => {
     )}
     </article>
 
-      <section className='grid justify-center bg-secondary_color mt-32 py-16 gap-16'>
-        <h1 className='text-center text-7xl text-white font-bold'>Experiências</h1>
-        <div className='grid grid-cols-2 justify-center gap-8'>
-          <Card />
-        </div>
-      </section>
+    <section id="experiencia" className="flex flex-col items-center bg-secondary_color mt-32 py-16 gap-16">
+      <h1 className="text-center text-7xl text-white font-bold">Experiências</h1>
+      <Card />
+    </section>
 
-      <Footer />
+      <Footer id="contato" />
     </div>
   );
 };
