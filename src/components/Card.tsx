@@ -39,7 +39,7 @@ const Card: React.FC = () => {
   return (
     <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 mt-6 max-w-5xl mx-auto">
 
-      <div className="bg-card_color p-12 pb-14 rounded-[20px] shadow-custom-offset flex flex-col items-center justify-center group cursor-pointer">
+      <div className="bg-card_color p-12 pb-40 rounded-[20px] shadow-custom-offset flex flex-col items-center justify-center group cursor-pointer">
         <button
           onClick={openModal}
           className="flex flex-col justify-center items-center gap-4 text-center w-full h-full"
