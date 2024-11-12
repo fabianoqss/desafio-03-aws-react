@@ -65,8 +65,6 @@ const Home: React.FC = () => {
   const [story, setStory] = useState<string>(
     localStorage.getItem('story') || ''
   );
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [linkedinUrl, setLinkedinUrl] = useState<string>(localStorage.getItem('linkedinUrl') || '');
 
   const handleEditStory = () => {
     setIsEditing(true);
@@ -75,15 +73,6 @@ const Home: React.FC = () => {
   const handleSaveStory = () => {
     localStorage.setItem('story', story);
     setIsEditing(false);
-  };
-
-  const handleSaveLinkedinUrl = () => {
-    localStorage.setItem('linkedinUrl', linkedinUrl);
-    setIsModalOpen(false);
-  };
-
-  const handleCancelLinkedinUrl = () => {
-    setIsModalOpen(false);
   };
 
 
