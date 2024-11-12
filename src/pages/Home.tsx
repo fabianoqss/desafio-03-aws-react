@@ -76,7 +76,7 @@ const Home: React.FC = () => {
             <Button url={`https://github.com/${userData.username}`} label="GitHub" />
             <Button url="https://www.linkedin.com" label="Linkedin" />
           </div>
-          <MdModeEditOutline className='absolute right-8 w-16 h-16 text-white bg-card_color rounded-full p-3'/>
+          <MdModeEditOutline className='absolute right-8 w-16 h-16 text-white bg-card_color rounded-full p-3 hover:bg-primary_color'/>
         </div>
       </section>
 
