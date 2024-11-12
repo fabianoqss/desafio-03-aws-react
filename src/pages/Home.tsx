@@ -6,7 +6,6 @@ import Button from '../components/Button';
 import Card from '../components/Card';
 import { MdModeEditOutline } from "react-icons/md";
 import { IoCheckmarkCircle } from "react-icons/io5";
-<IoCheckmarkCircle />
 
 const Home: React.FC = () => {
   const [isLogged, setIsLogged] = useState<boolean>(false);
@@ -145,7 +144,7 @@ const Home: React.FC = () => {
     )}
     </article>
 
-      <section className='grid justify-center bg-secondary_color mt-32 py-16'>
+      <section className='grid justify-center bg-secondary_color mt-32 py-16 gap-16'>
         <h1 className='text-center text-7xl text-white font-bold'>Experiências</h1>
         <div className='grid grid-cols-2 justify-center gap-8'>
           <Card />

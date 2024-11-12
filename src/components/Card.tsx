@@ -10,6 +10,7 @@ interface CardData {
 }
 
 const Card: React.FC = () => {
+  const [isEditing, setIsEditing] = useState<boolean>(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [cards, setCards] = useState<CardData[]>([]);
   const [title, setTitle] = useState('');
@@ -38,15 +39,15 @@ const Card: React.FC = () => {
 
   return (
     <div>
-<div className='bg-card_color mt-6 max-w-sm p-8 rounded-[20px] shadow-custom-offset pb-40 group'>
-  <button 
-    onClick={openModal} 
-    className='flex flex-col justify-center items-center gap-4 cursor-pointer text-center w-full h-full'
-  >
-    <GrAddCircle className='w-24 h-24 text-white group-hover:text-primary_color mt-16'/>
-    <h2 className='text-3xl text-white font-extrabold group-hover:text-primary_color'>Adicionar Card</h2>
-  </button>
-</div>
+      <div className='bg-card_color mt-6 max-w-sm p-8 rounded-[20px] shadow-custom-offset pb-40 group'>
+        <button 
+            onClick={openModal} 
+            className='flex flex-col justify-center items-center gap-4 cursor-pointer text-center w-full h-full'
+       >
+        <GrAddCircle className='w-24 h-24 text-white hover:text-primary_color mt-16'/>
+        <h2 className='text-3xl text-white hover:text-primary_color font-extrabold'>Adicionar Card</h2>
+      </button>
+      </div>
 
 
       <section className="experiences">
