@@ -16,7 +16,7 @@ const Card: React.FC = () => {
   const [period, setPeriod] = useState('');
   const [skills, setSkills] = useState('');
   const [description, setDescription] = useState('');
-  
+
   const openModal = () => setModalIsOpen(true);
   const closeModal = () => setModalIsOpen(false);
 
@@ -28,8 +28,8 @@ const Card: React.FC = () => {
       description,
     };
 
-    setCards([...cards, newCard]); 
-    closeModal(); 
+    setCards([...cards, newCard]);
+    closeModal();
     setTitle('');
     setPeriod('');
     setSkills('');
@@ -37,32 +37,33 @@ const Card: React.FC = () => {
   };
 
   return (
-    <div>
-      <div className='bg-card_color mt-6 max-w-sm p-8 rounded-[20px] shadow-custom-offset pb-40 group'>
-        <button 
-            onClick={openModal} 
-            className='flex flex-col justify-center items-center gap-4 cursor-pointer text-center w-full h-full'
-       >
-        <GrAddCircle className='w-24 h-24 text-white hover:text-primary_color mt-16'/>
-        <h2 className='text-3xl text-white hover:text-primary_color font-extrabold'>Adicionar Card</h2>
-      </button>
+    <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 mt-6 max-w-5xl mx-auto">
+
+      <div className="bg-card_color p-12 pb-40 rounded-[20px] shadow-custom-offset flex flex-col items-center justify-center group cursor-pointer">
+        <button
+          onClick={openModal}
+          className="flex flex-col justify-center items-center gap-4 text-center w-full h-full"
+        >
+          <GrAddCircle className="w-24 h-24 text-white hover:text-primary_color" />
+          <h2 className="text-3xl text-white hover:text-primary_color font-extrabold">Adicionar Card</h2>
+        </button>
       </div>
 
-
-      <section className="experiences">
-        {cards.map((card, index) => (
-          <div key={index} className='bg-card_color mt-6 grid max-w-sm p-8 gap-4 rounded-[20px] shadow-custom-offset pb-48'>
-            <h1 className='text-3xl text-white'>{card.title}</h1>
-            <p className='text-xl text-tertiary_text'>{card.period}</p>
-            <div className='flex gap-3'>
-              {card.skills.map((skill, skillIndex) => (
-                <p key={skillIndex} className='text-white bg-dark_green p-2 rounded'>{skill}</p>
-              ))}
-            </div>
-            <p className='text-left text-white text-xl'>{card.description}</p>
+  
+      {cards.map((card, index) => (
+        <div key={index} className="bg-card_color p-8 pb-40 gap-4 rounded-[20px] shadow-custom-offset flex flex-col">
+          <h1 className="text-3xl text-white">{card.title}</h1>
+          <p className="text-xl text-tertiary_text">{card.period}</p>
+          <div className="flex gap-3">
+            {card.skills.map((skill, skillIndex) => (
+              <p key={skillIndex} className="text-white bg-dark_green p-2 rounded">
+                {skill}
+              </p>
+            ))}
           </div>
-        ))}
-      </section>
+          <p className="text-left text-white text-xl">{card.description}</p>
+        </div>
+      ))}
 
       <Modal
         isOpen={modalIsOpen}
@@ -113,8 +114,9 @@ const Card: React.FC = () => {
           </button>
         </div>
       </Modal>
-    </div>
+    </section>
   );
 };
+
 
 export default Card;
