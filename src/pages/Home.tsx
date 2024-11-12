@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import { MdModeEditOutline } from "react-icons/md";
+import { IoCheckmarkCircle } from "react-icons/io5";
 
 const Home: React.FC = () => {
   const [isLogged, setIsLogged] = useState<boolean>(false);
@@ -34,14 +35,21 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     const user = localStorage.getItem('username');
+    const email = localStorage.getItem('email');
     if (user) {
       setIsLogged(true);
-      fetchGitHubData(user); 
+      setUserData((prevData) => ({
+        ...prevData,
+        email: email || '',
+      }));
+      fetchGitHubData(user);
     }
   }, []);
+  
 
   const handleLogout = () => {
     localStorage.removeItem('user');
+    localStorage.removeItem('email');
     localStorage.removeItem('token');
     setIsLogged(false);
     setUserData({
@@ -52,6 +60,32 @@ const Home: React.FC = () => {
       username: ''
     });
   };
+
+  const [isEditing, setIsEditing] = useState<boolean>(false); 
+  const [story, setStory] = useState<string>(
+    localStorage.getItem('story') || ''
+  );
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [linkedinUrl, setLinkedinUrl] = useState<string>(localStorage.getItem('linkedinUrl') || '');
+
+  const handleEditStory = () => {
+    setIsEditing(true);
+  };
+  
+  const handleSaveStory = () => {
+    localStorage.setItem('story', story);
+    setIsEditing(false);
+  };
+
+  const handleSaveLinkedinUrl = () => {
+    localStorage.setItem('linkedinUrl', linkedinUrl);
+    setIsModalOpen(false);
+  };
+
+  const handleCancelLinkedinUrl = () => {
+    setIsModalOpen(false);
+  };
+
 
   return (
     <div className='bg-secondary_text'>
@@ -64,33 +98,55 @@ const Home: React.FC = () => {
             alt={userData.name}
             className='w-[260px] h-[260px] bg-black rounded-full'
           />
-          <h1 className='text-6xl'>{userData.username || ''}</h1>
-          <p className='text-2xl'>{userData.location || ''}</p>
-          <h1 className='text-2xl'>{userData.email || ''}</h1>
+          <h1 className='text-[64px] font-extrabold'>{userData.username || ''}</h1>
+          <p className='text-[25px] font-semibold'>{userData.location || ''}</p>
+          <h1 className='text-[25px] font-semibold'>{userData.email || ''}</h1>
         </div>
 
         <div className='grid gap-8 max-w-xl relative'>
           <h1 className='text-7xl'>Hello,<br /> I'm <span className='text-primary_color'>{userData.name || 'Fulano'}</span></h1>
-          <p>Olá, meu nome é {userData.name || 'Usuário'} e sou dev há 24 anos, sou um senior experiente e potente, sempre disposto a evoluir!</p>
+          <p className='text-[#18191F] font-semibold'>Olá, meu nome é {userData.name || 'Usuário'} e sou dev há 24 anos, sou um senior experiente e potente, sempre disposto a evoluir!</p>
           <div className='flex'>
             <Button url={`https://github.com/${userData.username}`} label="GitHub" />
             <Button url="https://www.linkedin.com" label="Linkedin" />
           </div>
-          <MdModeEditOutline className='absolute right-8 w-16 h-16 text-white bg-card_color rounded-full p-3 hover:bg-primary_color'/>
+
+          {isEditing ? (
+            <IoCheckmarkCircle 
+              className='absolute top-4 right-8 w-10 h-10 text-white bg-card_color rounded-full p-2 hover:bg-primary_color cursor-pointer'
+              onClick={handleSaveStory}
+            />
+          ) : (
+            <MdModeEditOutline 
+              className='absolute top-4 right-8 w-10 h-10 text-white bg-card_color rounded-full p-2 hover:bg-primary_color cursor-pointer'
+              onClick={handleEditStory}
+            />
+          )}
         </div>
       </section>
 
-      <article className='bg-card_color max-w-[1240px] mx-auto rounded-3xl mt-36 p-16'>
-        <h1 className='text-7xl text-white'>Minha História</h1>
-        <p className='text-white mt-16'>
-          Olá, eu sou Felipe Pato e comecei minha carreira trabalhando em um pequeno escritório na California para meu chefe Elon Musk...
-        </p>
-      </article>
+      <article className='bg-card_color max-w-[1240px] mx-auto rounded-3xl mt-36 p-16 relative'>
+  <h1 className='text-7xl text-white'>Minha História</h1>
+  {isEditing ? (
+    <textarea
+      value={story}
+      onChange={(e) => setStory(e.target.value)}
+      onInput={(e) => {
+        const target = e.target as HTMLTextAreaElement;
+        target.style.height = 'auto';
+        target.style.height = `${target.scrollHeight}px`; 
+      }}
+      placeholder='Adicione sua historia'
+      className="text-white mt-16 bg-transparent w-full text-xl p-4 rounded outline-none resize-none border-0 focus:ring-0"
+    />
+    ) : (
+    <p className='text-white mt-16'>{story}</p>
+    )}
+    </article>
 
-      <section className='grid justify-center bg-secondary_color mt-32 py-16'>
+      <section className='grid justify-center bg-secondary_color mt-32 py-16 gap-16'>
         <h1 className='text-center text-7xl text-white font-bold'>Experiências</h1>
         <div className='grid grid-cols-2 justify-center gap-8'>
-          <Card />
           <Card />
         </div>
       </section>

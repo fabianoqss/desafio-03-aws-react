@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import instaIcon from '../assets/insta-black.svg';
+import facebookIcon from '../assets/facebook-black.svg';
+import twitterIcon from '../assets/twitter-black.svg';
+import youtubeIcon from '../assets/youtube-black.svg';
+import { MdLocationOn } from "react-icons/md";
 
 Modal.setAppElement('#root');
 
@@ -32,34 +37,26 @@ const Footer: React.FC = () => {
       <h1 className='text-4xl font-bold text-center text-dark_green'>Assim que possível, me envie um email para que possamos <br /> trabalhar felizes juntos!</h1>
 
       <div className='flex items-center gap-5 justify-center'>
-        <img
-          src="./assets/insta-black.svg"
-          alt="Instagram"
-          onClick={() => openModal('Instagram')}
-          className="w-6 h-6 cursor-pointer hover:opacity-80"
-        />
-        <img
-          src="/assets/facebook-icon.svg"
-          alt="Facebook"
-          onClick={() => openModal('Facebook')}
-          className="w-6 h-6 cursor-pointer hover:opacity-80"
-        />
-        <img
-          src="/assets/twitter-icon.svg"
-          alt="Twitter"
-          onClick={() => openModal('Twitter')}
-          className="w-6 h-6 cursor-pointer hover:opacity-80"
-        />
-        <img
-          src="/assets/youtube-icon.svg"
-          alt="YouTube"
-          onClick={() => openModal('YouTube')}
-          className="w-6 h-6 cursor-pointer hover:opacity-80"
-        />
+      <div className="w-16 h-16 bg-dark_green rounded-full flex items-center justify-center">
+      <img src={instaIcon} alt="Instagram" onClick={() => openModal('Instagram')} className="w-16 h-16 cursor-pointer" />
+        </div>
+
+        <div className="w-16 h-16 bg-dark_green rounded-full flex items-center justify-center">
+      <img src={facebookIcon} alt="Instagram" onClick={() => openModal('Instagram')} className="w-16 h-16 cursor-pointer" />
+        </div>
+
+        <div className="w-16 h-16 bg-dark_green rounded-full flex items-center justify-center">
+      <img src={twitterIcon} alt="Instagram" onClick={() => openModal('Instagram')} className="w-16 h-16 cursor-pointer" />
+        </div>
+
+      <div className="w-16 h-16 bg-dark_green rounded-full flex items-center justify-center">
+      <img src={youtubeIcon} alt="Instagram" onClick={() => openModal('Instagram')} className="w-16 h-16 cursor-pointer" />
+        </div>
       </div>
 
       <div className='flex items-center gap-20 justify-center'>
-        <p className='flex items-center gap-1 text-xl'>Brasil</p>
+        <p className='flex items-center gap-1 text-xl gap-3'><MdLocationOn className='text-primary_text'/>
+        Brasil</p>
         <p className='text-xl'>© 2024, All Rights By Compass UOL</p>
       </div>
 
