@@ -12,16 +12,12 @@ const GitHubLoginButton = () => {
   const loginWithGithub = () => {
     signInWithPopup(auth, provider)
       .then(async (result) => {
-        console.log("resultado do login", result)
         const user = (result as any).user;
         const githubUsername = (result as any)._tokenResponse.screenName;
-        console.log("user logado email", user.email)
         const token = await user.getIdToken();
-
-         console.log("Nome de usuário do GitHub:", githubUsername);
-        
         if (githubUsername) {
           localStorage.setItem('username', githubUsername);
+          localStorage.setItem('email', user.email);
         } 
   
         localStorage.setItem('token', token);

@@ -38,12 +38,16 @@ const Card: React.FC = () => {
 
   return (
     <div>
-      <div className='bg-card_color mt-6 max-w-sm p-8 rounded-[20px] shadow-custom-offset pb-40'>
-        <div onClick={openModal} className='flex flex-col justify-center items-center gap-4 cursor-pointer text-center'>
-          <GrAddCircle className='w-24 h-24 text-white hover:text-primary_color mt-16'/>
-          <h2 className='text-3xl text-white hover:text-primary_color font-extrabold'>Adicionar Card</h2>
-        </div>
-      </div>
+<div className='bg-card_color mt-6 max-w-sm p-8 rounded-[20px] shadow-custom-offset pb-40 group'>
+  <button 
+    onClick={openModal} 
+    className='flex flex-col justify-center items-center gap-4 cursor-pointer text-center w-full h-full'
+  >
+    <GrAddCircle className='w-24 h-24 text-white group-hover:text-primary_color mt-16'/>
+    <h2 className='text-3xl text-white font-extrabold group-hover:text-primary_color'>Adicionar Card</h2>
+  </button>
+</div>
+
 
       <section className="experiences">
         {cards.map((card, index) => (

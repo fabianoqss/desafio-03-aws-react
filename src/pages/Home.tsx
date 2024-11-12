@@ -36,14 +36,21 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     const user = localStorage.getItem('username');
+    const email = localStorage.getItem('email');
     if (user) {
       setIsLogged(true);
-      fetchGitHubData(user); 
+      setUserData((prevData) => ({
+        ...prevData,
+        email: email || '',
+      }));
+      fetchGitHubData(user);
     }
   }, []);
+  
 
   const handleLogout = () => {
     localStorage.removeItem('user');
+    localStorage.removeItem('email');
     localStorage.removeItem('token');
     setIsLogged(false);
     setUserData({
@@ -59,6 +66,8 @@ const Home: React.FC = () => {
   const [story, setStory] = useState<string>(
     localStorage.getItem('story') || ''
   );
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [linkedinUrl, setLinkedinUrl] = useState<string>(localStorage.getItem('linkedinUrl') || '');
 
   const handleEditStory = () => {
     setIsEditing(true);
@@ -67,6 +76,15 @@ const Home: React.FC = () => {
   const handleSaveStory = () => {
     localStorage.setItem('story', story);
     setIsEditing(false);
+  };
+
+  const handleSaveLinkedinUrl = () => {
+    localStorage.setItem('linkedinUrl', linkedinUrl);
+    setIsModalOpen(false);
+  };
+
+  const handleCancelLinkedinUrl = () => {
+    setIsModalOpen(false);
   };
 
 
@@ -130,7 +148,6 @@ const Home: React.FC = () => {
       <section className='grid justify-center bg-secondary_color mt-32 py-16'>
         <h1 className='text-center text-7xl text-white font-bold'>Experiências</h1>
         <div className='grid grid-cols-2 justify-center gap-8'>
-          <Card />
           <Card />
         </div>
       </section>
