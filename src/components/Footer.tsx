@@ -8,7 +8,11 @@ import { MdLocationOn } from "react-icons/md";
 
 Modal.setAppElement('#root');
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  id?: string;
+}
+
+const Footer: React.FC <FooterProps> = ({id}) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedPlatform, setSelectedPlatform] = useState<string | null>(null);
   const [url, setUrl] = useState('');
@@ -33,7 +37,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className='grid justify-center  pt-32 gap-16 pb-16'>
+    <footer id={id} className='grid justify-center  pt-32 gap-16 pb-16'>
       <h1 className='text-4xl font-bold text-center text-dark_green'>Assim que possível, me envie um email para que possamos <br /> trabalhar felizes juntos!</h1>
 
       <div className='flex items-center gap-5 justify-center'>
