@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Button from '../components/Button';
 import Card from '../components/Card';
+import { MdModeEditOutline } from "react-icons/md";
 
 const Home: React.FC = () => {
   const [isLogged, setIsLogged] = useState<boolean>(false);
@@ -21,8 +22,8 @@ const Home: React.FC = () => {
       console.log("Reposta da API DO GIT: ", response)
       setUserData({
         name: response.data.name,
-        email: response.data.email || 'Não disponível',
-        location: response.data.location || 'Não disponível',
+        email: response.data.email || '',
+        location: response.data.location || '',
         avatarUrl: response.data.avatar_url,
         username: response.data.login
       });
@@ -56,25 +57,26 @@ const Home: React.FC = () => {
     <div className='bg-secondary_text'>
       <Header isLogged={isLogged} handleLogout={handleLogout} />
 
-      <section className='grid grid-cols-2 items-center justify-items-center mt-28 max-w-[1240px]'>
-        <div className='grid gap-4'>
+      <section className='grid grid-cols-2 justify-center items-center  mt-28'>
+        <div className='grid gap-4 justify-items-center'>
           <img
             src={userData.avatarUrl || ''}
             alt={userData.name}
             className='w-[260px] h-[260px] bg-black rounded-full'
           />
-          <h1 className='text-6xl'>{userData.name || 'Patoxx'}</h1>
+          <h1 className='text-6xl'>{userData.username || ''}</h1>
           <p className='text-2xl'>{userData.location || ''}</p>
           <h1 className='text-2xl'>{userData.email || ''}</h1>
         </div>
 
-        <div className='grid gap-8 justify-end'>
+        <div className='grid gap-8 max-w-xl relative'>
           <h1 className='text-7xl'>Hello,<br /> I'm <span className='text-primary_color'>{userData.name || 'Fulano'}</span></h1>
           <p>Olá, meu nome é {userData.name || 'Usuário'} e sou dev há 24 anos, sou um senior experiente e potente, sempre disposto a evoluir!</p>
           <div className='flex'>
             <Button url={`https://github.com/${userData.username}`} label="GitHub" />
             <Button url="https://www.linkedin.com" label="Linkedin" />
           </div>
+          <MdModeEditOutline className='absolute right-8 w-16 h-16 text-white bg-card_color rounded-full p-3 hover:bg-primary_color'/>
         </div>
       </section>
 
