@@ -1,52 +1,64 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Modal from 'react-modal';
-import { GrAddCircle } from "react-icons/gr";
+import { GrAddCircle } from 'react-icons/gr';
 
-Modal.setAppElement('#root'); // Necessário para acessibilidade ao usar react-modal
+interface CardData {
+  title: string;
+  period: string;
+  skills: string[];
+  description: string;
+}
 
 const Card: React.FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [cards, setCards] = useState<CardData[]>([]);
   const [title, setTitle] = useState('');
   const [period, setPeriod] = useState('');
   const [skills, setSkills] = useState('');
   const [description, setDescription] = useState('');
-  const [repositoryLink, setRepositoryLink] = useState('');
-
+  
   const openModal = () => setModalIsOpen(true);
   const closeModal = () => setModalIsOpen(false);
 
   const handleSaveCard = () => {
-    console.log({ title, period, skills, description, repositoryLink });
-    closeModal();
+    const newCard: CardData = {
+      title,
+      period,
+      skills: skills.split(',').map(skill => skill.trim()),
+      description,
+    };
+
+    setCards([...cards, newCard]); 
+    closeModal(); 
+    setTitle('');
+    setPeriod('');
+    setSkills('');
+    setDescription('');
   };
 
   return (
     <div>
-      <div className='bg-card_color mt-6 grid max-w-sm p-8 gap-4 rounded-[20px] shadow-custom-offset pb-48'>
-        <h1 className='text-3xl text-white'>Título</h1>
-        <p className='text-xl text-tertiary_text'>Junho - 2002 - 2020</p>
-        <div className='flex gap-3 '>
-          <p className='text-white bg-dark_green p-2 rounded'>TypeScript</p>
-          <p className='text-white bg-dark_green p-2 rounded'>Angular</p>
-          <p className='text-white bg-dark_green p-2 rounded'>Vue.JS</p>
+      <div className='bg-card_color mt-6 max-w-sm p-8 rounded-[20px] shadow-custom-offset pb-40'>
+        <div onClick={openModal} className='flex flex-col justify-center items-center gap-4 cursor-pointer text-center'>
+          <GrAddCircle className='w-24 h-24 text-white hover:text-primary_color mt-16'/>
+          <h2 className='text-3xl text-white hover:text-primary_color font-extrabold'>Adicionar Card</h2>
         </div>
-
-        <p className='text-left text-white text-xl '>
-          Trabalhei com figma na nasa construindo designs de foguetes usando figma pro Elon Musk
-        </p>
-
-        <button onClick={openModal} className='mt-4 bg-dark_green text-white py-2 px-4 rounded'>
-          Criar Novo Card
-        </button>
       </div>
 
-      <div className='bg-card_color mt-6  max-w-sm p-8 rounded-[20px] shadow-custom-offset pb-96 '>
-        <div className='flex flex-col justify-items-center items-center gap-4 '>
-        <GrAddCircle className='w-24 h-24 text-white hover:text-primary_color'/>
-      <h2 className='text-3xl text-white hover:text-primary_color font-extrabold'>Adicionar Card</h2>
-      </div>
-
-      </div>
+      <section className="experiences">
+        {cards.map((card, index) => (
+          <div key={index} className='bg-card_color mt-6 grid max-w-sm p-8 gap-4 rounded-[20px] shadow-custom-offset pb-48'>
+            <h1 className='text-3xl text-white'>{card.title}</h1>
+            <p className='text-xl text-tertiary_text'>{card.period}</p>
+            <div className='flex gap-3'>
+              {card.skills.map((skill, skillIndex) => (
+                <p key={skillIndex} className='text-white bg-dark_green p-2 rounded'>{skill}</p>
+              ))}
+            </div>
+            <p className='text-left text-white text-xl'>{card.description}</p>
+          </div>
+        ))}
+      </section>
 
       <Modal
         isOpen={modalIsOpen}
@@ -86,14 +98,6 @@ const Card: React.FC = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           className="border border-gray-300 p-2 w-full rounded-md h-24"
-        />
-
-        <input
-          type="text"
-          placeholder="Link do repositório (Opcional)"
-          value={repositoryLink}
-          onChange={(e) => setRepositoryLink(e.target.value)}
-          className="border border-gray-300 p-2 w-full rounded-md"
         />
 
         <div className="flex gap-4">

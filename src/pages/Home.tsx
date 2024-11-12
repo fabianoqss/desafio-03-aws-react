@@ -5,6 +5,8 @@ import Footer from '../components/Footer';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import { MdModeEditOutline } from "react-icons/md";
+import { IoCheckmarkCircle } from "react-icons/io5";
+<IoCheckmarkCircle />
 
 const Home: React.FC = () => {
   const [isLogged, setIsLogged] = useState<boolean>(false);
@@ -55,7 +57,7 @@ const Home: React.FC = () => {
 
   const [isEditing, setIsEditing] = useState<boolean>(false); 
   const [story, setStory] = useState<string>(
-    ''
+    localStorage.getItem('story') || ''
   );
 
   const handleEditStory = () => {
@@ -91,10 +93,18 @@ const Home: React.FC = () => {
             <Button url={`https://github.com/${userData.username}`} label="GitHub" />
             <Button url="https://www.linkedin.com" label="Linkedin" />
           </div>
-          <MdModeEditOutline 
-          className='absolute top-4 right-8 w-10 h-10 text-white bg-card_color rounded-full p-2 hover:bg-primary_color cursor-pointer'
-         onClick={isEditing ? handleSaveStory : handleEditStory} 
-         />
+
+          {isEditing ? (
+            <IoCheckmarkCircle 
+              className='absolute top-4 right-8 w-10 h-10 text-white bg-card_color rounded-full p-2 hover:bg-primary_color cursor-pointer'
+              onClick={handleSaveStory}
+            />
+          ) : (
+            <MdModeEditOutline 
+              className='absolute top-4 right-8 w-10 h-10 text-white bg-card_color rounded-full p-2 hover:bg-primary_color cursor-pointer'
+              onClick={handleEditStory}
+            />
+          )}
         </div>
       </section>
 
