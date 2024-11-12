@@ -99,14 +99,14 @@ const Home: React.FC = () => {
             alt={userData.name}
             className='w-[260px] h-[260px] bg-black rounded-full'
           />
-          <h1 className='text-6xl'>{userData.username || ''}</h1>
-          <p className='text-2xl'>{userData.location || ''}</p>
-          <h1 className='text-2xl'>{userData.email || ''}</h1>
+          <h1 className='text-[64px] font-extrabold'>{userData.username || ''}</h1>
+          <p className='text-[25px] font-semibold'>{userData.location || ''}</p>
+          <h1 className='text-[25px] font-semibold'>{userData.email || ''}</h1>
         </div>
 
         <div className='grid gap-8 max-w-xl relative'>
           <h1 className='text-7xl'>Hello,<br /> I'm <span className='text-primary_color'>{userData.name || 'Fulano'}</span></h1>
-          <p>Olá, meu nome é {userData.name || 'Usuário'} e sou dev há 24 anos, sou um senior experiente e potente, sempre disposto a evoluir!</p>
+          <p className='text-[#18191F] font-semibold'>Olá, meu nome é {userData.name || 'Usuário'} e sou dev há 24 anos, sou um senior experiente e potente, sempre disposto a evoluir!</p>
           <div className='flex'>
             <Button url={`https://github.com/${userData.username}`} label="GitHub" />
             <Button url="https://www.linkedin.com" label="Linkedin" />
