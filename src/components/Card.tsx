@@ -10,7 +10,6 @@ interface CardData {
 }
 
 const Card: React.FC = () => {
-  const [isEditing, setIsEditing] = useState<boolean>(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [cards, setCards] = useState<CardData[]>([]);
   const [title, setTitle] = useState('');
