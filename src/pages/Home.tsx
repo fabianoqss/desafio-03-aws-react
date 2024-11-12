@@ -53,6 +53,21 @@ const Home: React.FC = () => {
     });
   };
 
+  const [isEditing, setIsEditing] = useState<boolean>(false); 
+  const [story, setStory] = useState<string>(
+    ''
+  );
+
+  const handleEditStory = () => {
+    setIsEditing(true);
+  };
+  
+  const handleSaveStory = () => {
+    localStorage.setItem('story', story);
+    setIsEditing(false);
+  };
+
+
   return (
     <div className='bg-secondary_text'>
       <Header isLogged={isLogged} handleLogout={handleLogout} />
@@ -76,16 +91,31 @@ const Home: React.FC = () => {
             <Button url={`https://github.com/${userData.username}`} label="GitHub" />
             <Button url="https://www.linkedin.com" label="Linkedin" />
           </div>
-          <MdModeEditOutline className='absolute right-8 w-16 h-16 text-white bg-card_color rounded-full p-3 hover:bg-primary_color'/>
+          <MdModeEditOutline 
+          className='absolute top-4 right-8 w-10 h-10 text-white bg-card_color rounded-full p-2 hover:bg-primary_color cursor-pointer'
+         onClick={isEditing ? handleSaveStory : handleEditStory} 
+         />
         </div>
       </section>
 
-      <article className='bg-card_color max-w-[1240px] mx-auto rounded-3xl mt-36 p-16'>
-        <h1 className='text-7xl text-white'>Minha História</h1>
-        <p className='text-white mt-16'>
-          Olá, eu sou Felipe Pato e comecei minha carreira trabalhando em um pequeno escritório na California para meu chefe Elon Musk...
-        </p>
-      </article>
+      <article className='bg-card_color max-w-[1240px] mx-auto rounded-3xl mt-36 p-16 relative'>
+  <h1 className='text-7xl text-white'>Minha História</h1>
+  {isEditing ? (
+    <textarea
+      value={story}
+      onChange={(e) => setStory(e.target.value)}
+      onInput={(e) => {
+        const target = e.target as HTMLTextAreaElement;
+        target.style.height = 'auto';
+        target.style.height = `${target.scrollHeight}px`; 
+      }}
+      placeholder='Adicione sua historia'
+      className="text-white mt-16 bg-transparent w-full text-xl p-4 rounded outline-none resize-none border-0 focus:ring-0"
+    />
+    ) : (
+    <p className='text-white mt-16'>{story}</p>
+    )}
+    </article>
 
       <section className='grid justify-center bg-secondary_color mt-32 py-16'>
         <h1 className='text-center text-7xl text-white font-bold'>Experiências</h1>
