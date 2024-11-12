@@ -55,7 +55,7 @@ const Footer: React.FC = () => {
       </div>
 
       <div className='flex items-center gap-20 justify-center'>
-        <p className='flex items-center gap-1 text-xl gap-3'><MdLocationOn className='text-primary_text'/>
+        <p className='flex items-center text-xl gap-3'><MdLocationOn className='text-primary_text'/>
         Brasil</p>
         <p className='text-xl'>© 2024, All Rights By Compass UOL</p>
       </div>
